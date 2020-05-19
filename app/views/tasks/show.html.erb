@@ -4,6 +4,15 @@
   <%= @task.details %>
 </div>
 
-<p> This task is completed: <%= @task.completed %></p>
+  <% if @task.completed == false %>
+    <p> "This task is not completed" <%= check_box("tag", tag.id, {checked: @task.completed})%> </p>
+  <% else %>
+  <p> "This task is completed!!" <%= check_box("tag", tag.id, {checked: @task.completed})%> </p>
+  <% end %>
 
 <%= link_to "back to tasks", tasks_path %>
+
+<ul>
+  <li><%= link_to "Edit task", edit_path(@task.id) %></li>
+  <li><%= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %></li>
+</ul>
